@@ -9,14 +9,11 @@
 
   .mediagallery-wrap {
     background: white;
+    padding-left: 0;
+    padding-right: 0;
 
     .field-mediagallery {
       overflow: hidden;
-
-      img {
-        width: 100%;
-        height: auto;
-      }
     }
   }
 
@@ -31,6 +28,16 @@
   h2 {
     font-size: 60px; //todo
     color: #34345e;
+    margin-bottom: 80px;
+
+    &:after {
+      content: '';
+      height: 1px;
+      width: 170px;
+      background: #6c6969;
+      display: block;
+      margin-top: 25px;
+    }
   }
 }
 
