@@ -42,7 +42,9 @@
   {% if multiple %}
     <div{{ attributes }} class="field--field-mediagallery cd-slider">
       {% for item in items %}
-        <div{{ item.attributes }} class="field--field-mediagallery-item">{{ item.content }}</div>
+        <div{{ item.attributes }} class="field--field-mediagallery-item">
+          {{ item.content }}
+        </div>
       {% endfor %}
     </div>
     <ul class="cd-slider-navigation">

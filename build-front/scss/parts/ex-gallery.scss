@@ -26,6 +26,21 @@ Main Components
 .cd-single-item {
 	position: relative;
 
+	.field--field-mediagallery-item {
+		float: left;
+
+		&.portrait,
+		&.square {
+			@media (min-width: 768px) {
+				width: 50%;
+			}
+		}
+
+		&.landscape {
+			width: 100%;
+		}
+	}
+
 	&.cd-slider-active {
 		padding-left: 0;
 		padding-right: 0;
@@ -42,6 +57,15 @@ Main Components
 			width: 100%;
 			@include transform(translateX(100%));
 			@include transition(transform .3s);
+			float: none;
+
+			&.portrait,
+			&.square
+			&.landscape {
+				@media (min-width: 768px) {
+					width: 100%;
+				}
+			}
 
 			&:after {
 				display: none;

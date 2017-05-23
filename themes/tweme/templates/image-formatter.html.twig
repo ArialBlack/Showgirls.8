@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a formatted image field.
+ *
+ * Available variables:
+ * - image: A collection of image data.
+ * - image_style: An optional image style.
+ * - url: An optional URL the image can be linked to.
+ *
+ * @see template_preprocess_image_formatter()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set ratio = image['#width'] / image['#height'] %}
+
+{% if ratio > 1.4 %}
+  {% set oClass = 'landscape' %}
+{% elseif ratio < 0.85 %}
+  {% set oClass = 'portrait' %}
+{% else %}
+  {% set oClass = 'square' %}
+{% endif %}
+
+{% if url %}
+  <a href="{{ url }}">{{ image }}</a>
+{% else %}
+  <span class="img-orinent {{ oClass }}">{{ image }}</span>
+{% endif %}
