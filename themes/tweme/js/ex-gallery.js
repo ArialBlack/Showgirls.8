@@ -1,4 +1,12 @@
 jQuery(document).ready(function($){
+
+	function setGalHeight() {
+		var wh = $(window).height();
+		$('.mediagallery-wrap.cd-slider-active').height(wh + 'px');
+		$('.mediagallery-wrap.cd-slider-active .field--field-mediagallery-item').height(wh + 'px');
+		console.log('g');
+	}
+
 	var itemInfoWrapper = $('.cd-single-item');
 
 	$('.field--field-mediagallery-item:first-child').addClass('selected');
@@ -17,6 +25,7 @@ jQuery(document).ready(function($){
 			if( !container.hasClass('cd-slider-active') && $(event.target).is('.cd-slider')) {
 				itemInfoWrapper.removeClass('cd-slider-active');
 				container.addClass('cd-slider-active').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+					setGalHeight();
 					$('body,html').animate({'scrollTop':container.offset().top}, 200);
 				});
 			}
