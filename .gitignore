@@ -28,3 +28,7 @@ modules/*
 /composer.lock
 /LICENSE.txt
 /README.txt
+
+themes/tweme/css/
+build-front/.sass-cache/
+flse/

@@ -1,1 +1,10 @@
+@import 'variables.scss';
 @import '../bower_components/bootstrap/scss/bootstrap.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Roboto&subset=cyrillic');
+
+@import '_base.scss';
+@import 'parts/nav.scss';
+@import 'pages/foto.scss';
+
+@import 'parts/ex-gallery';

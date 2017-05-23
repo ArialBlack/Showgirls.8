@@ -4,7 +4,10 @@
  * Prepares variables for `html.html.twig`.
  */
 function tweme_preprocess_html(&$variables) {
-  $variables['attributes']['class'][] = 'container';
+  $variables['attributes']['class'][] = 'container-fluid';
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  $variables['current_path'] = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 }
 
 /**
@@ -14,7 +17,7 @@ function tweme_preprocess_region(&$variables) {
   $variables['attributes']['class'][] = 'mb-3';
 }
 function tweme_preprocess_region__primary_menu(&$variables) {
-  $variables['attributes']['class'][] = 'navbar navbar-toggleable-md navbar-light bg-faded';
+  $variables['attributes']['class'][] = 'navbar navbar-toggleable-lg navbar-light bg-faded';
 }
 function tweme_preprocess_region__footer(&$variables) {
   $variables['attributes']['class'][] = 'card-group';
@@ -83,3 +86,22 @@ function tweme_preprocess_form(&$variables) {
 function tweme_preprocess_status_messages(&$variables) {
   $variables['attributes']['class'][] = 'alert alert-info';
 }
+
+function tweme_preprocess(&$variables, $hook){
+  $variables['base_path'] = base_path();
+}
+
+function tweme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__'.$content_type;
+  }
+}
+
+function tweme_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+

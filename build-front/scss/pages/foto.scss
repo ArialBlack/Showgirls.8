@@ -1,0 +1,28 @@
+.foto.full {
+
+  .field-cover {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .field-body {
+    background: white;
+    padding-left: 160px; //todo
+    padding-right: 160px; //todo
+    padding-top: 130px; //todo
+    padding-bottom: 130px;
+  }
+
+  h2 {
+    font-size: 60px; //todo
+    color: #34345e;
+  }
+}
+
+.paragraph--type--text {
+  background: white;
+  @include make-container();
+  @include make-container-max-widths();
+}

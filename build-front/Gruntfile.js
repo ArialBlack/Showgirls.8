@@ -58,7 +58,7 @@ module.exports = function(grunt) {
               ]
             },
             dist: {
-              src: 'css/style.css'
+              src: '../themes/tweme/css/style.css'
             }
         }, 
 

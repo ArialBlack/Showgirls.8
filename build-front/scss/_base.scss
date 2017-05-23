@@ -1,0 +1,20 @@
+body.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body {
+  background: $sg-bg;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+  font-weight: normal;
+}
+
+p {
+  margin-bottom: 40px; //todo
+}
