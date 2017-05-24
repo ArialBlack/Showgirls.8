@@ -45,41 +45,56 @@
  * @ingroup themeable
  */
 #}
-<div class="layout-container">
-  <div class="container text-align-center">
-    <a href="/"><img class="logo" src="/themes/tweme/images/showgirls-big-logo.gif" /></a>
-    <button class="navbar-toggler pull-right text-align-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">☰</button>
-    <div class="collapse navbar-toggleable-md" id="collapsingNavbar3">
-      {{ page.primary_menu }}
-      {{ page.secondary_menu }}
+
+
+<div id="perspective" class="perspective effect-laydown">
+  <div id="perspective-container">
+    <div id="perspective-wrapper"><!-- wrapper needed for scroll -->
+
+      <div class="layout-container">
+        <div class="container text-align-center">
+          <a href="/"><img class="logo" src="/themes/tweme/images/showgirls-big-logo.gif" /></a>
+          <button id="showMenu" class="navbar-toggler pull-right text-align-right" type="button">☰</button>
+        </div>
+
+        <main role="main">
+          <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+          <div class="layout-content">
+            {{ page.content }}
+          </div>{# /.layout-content #}
+
+          {% if page.sidebar_first %}
+            <aside class="layout-sidebar-first" role="complementary">
+              {{ page.sidebar_first }}
+            </aside>
+          {% endif %}
+
+          {% if page.sidebar_second %}
+            <aside class="layout-sidebar-second" role="complementary">
+              {{ page.sidebar_second }}
+            </aside>
+          {% endif %}
+
+        </main>
+
+        {% if page.footer %}
+          <footer role="contentinfo">
+            {{ page.footer }}
+          </footer>
+        {% endif %}
+      </div>{# /.layout-container #}
+
     </div>
   </div>
 
-  <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+  <nav class="outer-nav left vertical">
+    <a href="/">Home</a>
+    <a href="/works">Portfolio</a>
+    <a href="/about">About us</a>
+    <a href="/blog">Blog</a>
+    <a href="/contacts">Contacts</a>
+    <a href="/brif">Brif</a>
+  </nav>
 
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
-
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
-
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
-
-  </main>
-
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
-
-</div>{# /.layout-container #}
+</div><!-- /perspective -->
