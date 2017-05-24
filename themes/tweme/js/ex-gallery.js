@@ -1,10 +1,20 @@
 jQuery(document).ready(function($){
+	function wrapPortraits (list, item) {
+		var $list = $(list),
+			$items = $list.find(item),
+			r = 0;
+
+		for( var i = 0; i < $items.length; i+=2) {
+			$items.slice(i, i+2).wrapAll("<div class='portraitsRow'></div>");
+		}
+	}
 
 	function setGalHeight() {
 		var wh = $(window).height();
 		$('.mediagallery-wrap.cd-slider-active').height(wh + 'px');
 		$('.mediagallery-wrap.cd-slider-active .field--field-mediagallery-item').height(wh + 'px');
-		console.log('g');
+		$('.mediagallery-wrap.cd-slider-active .field--field-mediagallery-item img').height('').width('');
+
 	}
 
 	function clearGalHeight() {
@@ -29,6 +39,7 @@ jQuery(document).ready(function($){
 			console.log($(event.target));
 			//enlarge slider images 
 			if( !container.hasClass('cd-slider-active') && $(event.target).is('.field--field-mediagallery-item')) {
+				$('.field--field-mediagallery-item.portrait').unwrap();
 				console.log('cl');
 				itemInfoWrapper.removeClass('cd-slider-active');
 				container.addClass('cd-slider-active');
@@ -45,6 +56,7 @@ jQuery(document).ready(function($){
 			//shrink slider images 
 			container.removeClass('cd-slider-active');
 			clearGalHeight();
+			wrapPortraits('.field--field-mediagallery', '.field--field-mediagallery-item.portrait');
 		});
 
 		//update visible slide

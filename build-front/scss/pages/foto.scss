@@ -1,20 +1,8 @@
 .foto {
-
   .field-cover {
     img {
       width: 100%;
       height: auto;
-    }
-  }
-
-  .mediagallery-wrap {
-    background: white;
-
-    .field-mediagallery {
-      img {
-        width: 100%;
-        height: auto;
-      }
     }
   }
 
@@ -29,6 +17,16 @@
   h2 {
     font-size: 60px; //todo
     color: #34345e;
+    margin-bottom: 80px;
+
+    &:after {
+      content: '';
+      height: 1px;
+      width: 170px;
+      background: #6c6969;
+      display: block;
+      margin-top: 25px;
+    }
   }
 }
 

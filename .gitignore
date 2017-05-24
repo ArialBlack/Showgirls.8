@@ -32,3 +32,5 @@ modules/*
 themes/tweme/css/
 build-front/.sass-cache/
 flse/
+themes/tweme/templates/page--foto.html.twig
+themes/tweme/templates/page.html.twig

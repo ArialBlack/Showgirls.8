@@ -16,6 +16,10 @@ bootstrap:
     js/jquery.mobile.min.js: {}
     js/modernizr.js: {}
     js/ex-gallery.js: {}
+    js/jquery.cover.js: {}
+    js/classie.js: {}
+    js/menu.js: {}
+    js/main.js: {}
   dependencies:
     - core/jquery
     - tweme/tether

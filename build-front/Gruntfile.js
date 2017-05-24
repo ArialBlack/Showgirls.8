@@ -23,7 +23,8 @@ module.exports = function(grunt) {
 
                 files: {
                     // files go here, like so:
-                    //"templates/page.tpl.php": "dev-templates/page.tpl.php"
+                    "../themes/tweme/templates/page.html.twig": "_templates/page.html.twig",
+                    "../themes/tweme/templates/page--foto.html.twig": "_templates/page--foto.html.twig"
                 }
             },
         },
@@ -37,7 +38,7 @@ module.exports = function(grunt) {
             
              bake: {
                 files: [
-                    'dev-templates/**/*.php'
+                    '_templates/**/*.twig'
                 ],
                 tasks: ['bake']
             },
