@@ -1,9 +1,12 @@
 @import 'variables.scss';
 @import '../bower_components/bootstrap/scss/bootstrap.scss';
 
-@import url('https://fonts.googleapis.com/css?family=Merriweather|Roboto&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Merriweather&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=VT323');
 
-@import '_base.scss';
+@import 'mixins';
+@import 'base.scss';
 @import 'parts/flip3dmenu.scss';
 @import 'parts/nav.scss';
 @import 'pages/foto.scss';

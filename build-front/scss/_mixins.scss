@@ -1,0 +1,29 @@
+@mixin post-padding() {
+  $post-pad: 40px;
+  padding-left: $post-pad;
+  padding-right: $post-pad;
+
+  @media (min-width: 576px) {
+    $post-pad: 70px;
+    padding-left: $post-pad;
+    padding-right: $post-pad;
+  }
+
+  @media (min-width: 768px) {
+    $post-pad: 90px;
+    padding-left: $post-pad;
+    padding-right: $post-pad;
+  }
+
+  @media (min-width: 992px) {
+    $post-pad: 120px;
+    padding-left: $post-pad;
+    padding-right: $post-pad;
+  }
+
+  @media (min-width:1200px) {
+    $post-pad: 160px;
+    padding-left: $post-pad;
+    padding-right: $post-pad;
+  }
+}

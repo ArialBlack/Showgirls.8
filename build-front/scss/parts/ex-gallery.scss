@@ -40,6 +40,19 @@ Main Components
     clear: both;
   }
 
+  .bg-image {
+    width: 100%;
+    //height: 300px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .field-item {
+      display: block;
+      width: 100%;
+    }
+  }
+
 	.field--field-mediagallery-item {
 		float: left;
 
@@ -66,7 +79,6 @@ Main Components
 		padding-right: 0;
 		width: 100%;
 		background: $sg-bg;
-
 
 		.field--field-mediagallery-item {
 			position: absolute;
@@ -115,7 +127,7 @@ Main Components
 		&:after {
 			/* slider cover layer - to indicate the image is clickable */
 			content: '';
-			display: block;
+			display: none;
 			position: absolute;
 			top: 0;
 			left: 0;

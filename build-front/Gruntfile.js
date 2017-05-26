@@ -18,7 +18,7 @@ module.exports = function(grunt) {
          bake: {
             your_target: {
                 options: {
-                    // Task-specific options go here.
+                    parsePattern: /\[\[\s*([^\}]+)\s*\]\]/g,
                 },
 
                 files: {

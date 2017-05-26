@@ -1,15 +1,154 @@
 .foto {
-  .field-cover {
-    img {
+  .presents {
+    display: none;
+    font-family: 'VT323', monospace;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #c4c3c3;
+    text-align: center;
+    margin-top: 10px;
+
+    &:after {
+      content: '';
+      display: block;
+      background: url('../images/error-line.jpg') repeat-x center center;
+      height: 48px;
       width: 100%;
-      height: auto;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+  }
+
+  #article-main-media {
+    position: relative;
+
+    .field-cover {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .on-media {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .intro-container {
+    $h: 360px; //todo
+    padding-left: 0;
+    padding-right: 0;
+    background: url('../images/intro2.jpg') no-repeat center bottom;
+    background-size: cover;
+    height: $h;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 28px;
+    color: white;
+
+    > .container {
+      padding-left: 0;
+      padding-right: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: $h;
+    }
+
+    a {
+      color: white;
+    }
+
+    .post-models {
+      white-space: nowrap;
+      margin-bottom: 40px;
+
+      .field-item {
+        margin-bottom: 20px;
+      }
+    }
+
+    .post-stuff {
+      font-size: 20px;
+      margin-bottom: 40px;
+
+      .field-label,
+      .field-content {
+        display: inline;
+      }
+
+      .field-label {
+        font-weight: 500;
+
+        &:after {
+          content: ':';
+        }
+      }
+    }
+
+    .post-models-stars {
+      position: relative;
+     // width: 100%;
+      height: 100%;
+      padding-left: 40px;
+      padding-right: 40px;
+      box-sizing: border-box;
+
+      .post-models-stars-container {
+        position: absolute;
+        bottom: -75px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9;
+        text-align: center;
+
+        .post-models-stars-wrap {
+          position: relative;
+          width: 100%;
+          height: 100%;
+
+          &:before,
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            background-size: contain;
+            margin-left: auto;
+            margin-right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
+          &:before {
+            background: url('../images/stars2.png') no-repeat center center;
+            width: 478px;
+            height: 137px;
+            left: 40%;
+            //top: -44%;
+          }
+
+          &:after {
+            background: url('../images/stars-shadow.png') no-repeat center center;
+            width: 747px;
+            height: 60px;
+          }
+
+          .post-models-stars-content {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+          }
+        }
+      }
     }
   }
 
   .field-body {
     background: white;
-    padding-left: 160px; //todo
-    padding-right: 160px; //todo
+    @include post-padding();
     padding-top: 130px; //todo
     padding-bottom: 130px;
   }
@@ -28,10 +167,38 @@
       margin-top: 25px;
     }
   }
+
+  .paragraph--type--text,
+  .paragraph--type--instagram,
+  .paragraph--type--twitter,
+  .field-tags,
+  .field-comments {
+    background: white;
+    @include make-container();
+    @include make-container-max-widths();
+    @include post-padding();
+  }
+
+  .field-tags,
+  .field-comments {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }
 
-.paragraph--type--text {
-  background: white;
-  @include make-container();
-  @include make-container-max-widths();
+.field-pargarphs {
+  > .field > .field-item {
+    .paragraph {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }
 }
+
+.foto.feachured-post {
+  .presents {
+    display: block;
+  }
+}
+
+

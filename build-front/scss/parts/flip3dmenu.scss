@@ -3,26 +3,6 @@ html, body, .perspective {
 	height: 100%;
 }
 
-#showMenu {
-	position: fixed;
-	z-index: 999;
-	top: 10px;
-	right: 10px;
-
-	img {
-		//background: @bg;
-		padding: 7px;
-		border-radius: 100%;
-		transition: all 0.3s linear;
-	}
-
-	&:hover {
-		img {
-		//	background: @pink;
-		}
-	}
-}
-
 .perspective.modalview.animate {
 //	background: @bg url(/sites/all/themes/laba/images/backstage-menu.jpg) no-repeat center top;
 	background-size: cover;

@@ -69,6 +69,10 @@
 {% set tCount = node.field_teaser_text.getvalue|length %}
 {% set showPopup = node.field_show_popup.getvalue|length %}
 
+{% if node.field_featured_status.value == '1' %}
+  {% set fClass = node.field_cover.getvalue|length %}
+{% endif %}
+
 {%
   set classes = [
     node.bundle|clean_class,
@@ -80,28 +84,59 @@
     vCount > 0 ? 'video-media',
     tCount > 0 ? 'has-teaser-text',
     tCount == 0 ? 'has-empty-teaser',
-    showPopup > 0 ? 'show-popup'
+    showPopup > 0 ? 'show-popup',
+    node.field_featured_status.value == '1' ? 'feachured-post'
   ]
 %}
 
 <article{{ attributes.addClass(classes) }}>
 
+  <div class="presents">Presents:</div>
+
   <div{{ content_attributes.addClass('content') }}>
     {% block replaceable %}
 
+    {% if node.field_featured_status.value == '1' %}
       <div id="article-main-media">
         <div class="field-cover">{{ content.field_cover }}</div>
 
-        <div class="on-media container">
-          {% if page %}
-            <h1{{ title_attributes }}>{{ label }}</h1>
-          {% endif %}
-        </div>
+        <!--<div class="on-media">
+          <div class="container">
+          </div>
+        </div>-->
       </div>
 
       <div class="intro-container">
-        dfdfgfgdfgdfg
+        <div class="container">
+          <div class="post-models">
+            {{ content.field_user_model }}
+          </div>
+
+          <div class="post-models-stars">
+            <div class="post-models-stars-container">
+              <div class="post-models-stars-wrap">
+                <div class="post-models-stars-content">
+                  {{ content.field_stars }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-stuff">
+            {{ content.field_user_photo }}
+            {{ content.field_user_mua }}
+            {{ content.field_stuff }}
+          </div>
+        </div>
       </div>
+    {% else %}
+
+      {% if page %}
+        <h1{{ title_attributes }}>{{ label }}</h1>
+      {% endif %}
+
+      {{ content.field_user_artist }}
+    {% endif %}
 
       <div class="field-body container">{{ content.body }}</div>
 
@@ -118,7 +153,6 @@
       <div class="field-comments container">{{ content.field_disqus_comments }}</div>
 
      {# {{ content.flippy_pager }} #}
-
 
     {% endblock %}
   </div>

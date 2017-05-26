@@ -34,55 +34,15 @@ jQuery(document).ready(function($){
                 ww = $('#ajaxNodeModal .modal-dialog').width();
             }
 
+
             $images.each(function(index){
                 var $this = $(this),
-                    $img = $this.find('img'),
-                    imgWidth = $img.attr('width'),
-                    imgHeight = $img.attr('height'),
-                    ratio = imgWidth / imgHeight,
-                    mediaRatio = '';
+                    $item = $this.find('.bg-image');
 
-
-                if (ratio > 1) {
-                    mediaRatio = "landscape";
-                    widthScale = ww / imgWidth;
-                    newHeight = imgHeight * widthScale;
-
-                    if (newHeight > wh) {
-                        $this.css('height', $(window).height() + 'px');
-                        $img.addClass('cover-landscape');
-                    } else {
-                        console.log(ww);
-                        $this.css('height', newHeight + 'px');
-                        $img.addClass('resize-landscape');
-                    }
-
-                } else {
-                    mediaRatio = "portrait";
-                    heightScale = wh / imgHeight;
-                    newWidth = imgWidth * heightScale;
-
-                    if (newWidth > ww / 2) {
-                        //$img.addClass('cover-portrait');
-                        $img.css('height', 'auto');
-                        $img.css('width', '100%');
-                    } else {
-                        $img.css('height', wh + 'px');
-                        $img.css('width', 'auto');
-                    }
-                }
-
-                $this.addClass(mediaRatio);
-
-                //if(imgHeight > wh) {
-                //    $this.css('height', $(window).height() + 'px');
-                //} else {
-                //    $this.css('height', $(window).height() + 'px');
-               // }
+                $this.addClass($item.attr('class')).css('height', wh + 'px');
+                $item.css('height', wh + 'px');
             });
 
-            $('.field--field-mediagallery-item img.cover-landscape').cover();
-            $('.field--field-mediagallery-item img.cover-portrait').cover();
         });
     }
 
