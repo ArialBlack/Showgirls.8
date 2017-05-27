@@ -16,7 +16,6 @@ Primary style
 	@include box-sizing(border-box);
 }
 
-
 /* -------------------------------- 
 
 Main Components 
@@ -24,17 +23,17 @@ Main Components
 -------------------------------- */
 
 .mediagallery-wrap {
-	background: white;
-	padding-left: 0;
-	padding-right: 0;
+  background: white;
+  padding-left: 0;
+  padding-right: 0;
 
-	.field-mediagallery {
-		overflow: hidden;
-	}
+  .field-mediagallery {
+    overflow: hidden;
+  }
 }
 
 .cd-single-item {
-	position: relative;
+  position: relative;
 
   .portraitsRow {
     clear: both;
@@ -42,7 +41,6 @@ Main Components
 
   .bg-image {
     width: 100%;
-    //height: 300px;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -53,335 +51,274 @@ Main Components
     }
   }
 
-	.field--field-mediagallery-item {
-		float: left;
+  .field--field-mediagallery-item {
+    float: left;
+    margin-bottom: 20px;
+    position: relative;
 
-		&.portrait {
-			text-align: center;
+    &:after {
+      /* slider cover layer - to indicate the image is clickable */
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba($color-1, .4) url('../images/cd-icon-zoom.svg') no-repeat center center;
+      /* size of the icon */
+      background-size: 48px;
+      opacity: 0;
+      z-index: 4;
+      @include transition(opacity .2s);
+    }
 
-			@media (min-width: 768px) {
-				width: 50%;
-			}
-		}
+    .no-touch &:hover::after {
+      opacity: 1;
+    }
 
-		&.landscape {
-			width: 100%;
-		}
+    &.portrait {
+      text-align: center;
 
-		img.resize-landscape {
-			width: 100%;
-			height: auto;
-		}
-	}
+      @media (min-width: 768px) {
+        width: 50%;
+        padding-right: 10px;
+      }
 
-	&.cd-slider-active {
-		padding-left: 0;
-		padding-right: 0;
-		width: 100%;
-		background: $sg-bg;
+      &:nth-child(odd) {
+        @media (min-width: 768px) {
+          padding-right: 0;
+          padding-left: 10px;
+        }
+      }
+    }
 
-		.field--field-mediagallery-item {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 1;
-			height: 100%;
-			width: 100%;
-			@include transform(translateX(100%));
-			@include transition(transform .3s);
-			float: none;
+    &.landscape {
+      width: 100%;
+    }
+  }
 
-			&.portrait,
-			&.landscape {
-				@media (min-width: 768px) {
-					width: 100%;
-				}
-			}
+    //ACTIVE!
+  &.cd-slider-active {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    background: $sg-bg;
 
-			&:after {
-				display: none;
-			}
+    .field--field-mediagallery-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      @include transform(translateX(100%));
+      @include transition(transform .3s);
+      float: none;
 
-			img {
-				display: block;
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-			}
+      /*&.landscape {
+        @media (min-width: 768px) {
+          width: 100%;
+        }
+      }*/
 
-			&.selected {
-				position: relative;
-				z-index: 2;
-				@include transform(translateX(0));
-			}
+      &.portrait {
+        .bg-image {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
 
-			&.move-left {
-				@include transform(translateX(-100%));
-			}
-		}
-	}
+      &:after {
+        display: none;
+      }
 
-	.field--field-mediagallery-item {
-		position: relative;
+      &.selected {
+        position: relative;
+        z-index: 2;
+        @include transform(translateX(0));
+      }
 
-		&:after {
-			/* slider cover layer - to indicate the image is clickable */
-			content: '';
-			display: none;
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%;
-			background: rgba($color-1, .4) url('../images/cd-icon-zoom.svg') no-repeat center center;
-			/* size of the icon */
-			background-size: 48px;
-			opacity: 0;
-			z-index: 4;
-			@include transition(opacity .2s);
-		}
-
-		.no-touch &:hover::after {
-			opacity: 1;
-		}
-	}
+      &.move-left {
+        @include transform(translateX(-100%));
+      }
+    }
+  }
 }
 
 .cd-slider-wrapper {
-	position: relative;
-	z-index: 1;
-	@include transition(width $expand-animation-duration);
-	/* Force Hardware Acceleration in WebKit */
-	@include transform(translateZ(0));
-	@include backface-visibility(hidden);
-	will-change: width;
+  position: relative;
+  z-index: 1;
+  @include transition(width $expand-animation-duration);
+  /* Force Hardware Acceleration in WebKit */
+  @include transform(translateZ(0));
+  @include backface-visibility(hidden);
+  will-change: width;
 }
 
 .cd-slider {
-	position: relative;
-	z-index: 1;	
-	overflow: hidden;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 
-	&::before {
-		/* never visible - this is used in jQuery to check the current MQ */ 
-		content: 'mobile';
-		display: none;
-	}
+  &::before {
+  /* never visible - this is used in jQuery to check the current MQ */
+    content: 'mobile';
+    display: none;
+  }
 
+  @include MQ(L) {
+    cursor: pointer;
 
+    &::before {
+      /* never visible - this is used in jQuery to check the current MQ */
+      content: 'desktop';
+    }
 
-	@include MQ(L) {
-		cursor: pointer;
+    .cd-slider-active & {
+      cursor: auto;
 
-		&::before {
-			/* never visible - this is used in jQuery to check the current MQ */ 
-			content: 'desktop';
-		}
-
-
-		.cd-slider-active & {
-			cursor: auto;
-
-			&::after {
-				display: none;
-			}
-		}
-	}
+      &::after {
+        display: none;
+      }
+    }
+  }
 }
 
 @include MQ(L) {
+  .cd-slider-navigation li, .cd-slider-pagination {
+    opacity: 0;
+    visibility: hidden;
+    @include transition(opacity $expand-animation-duration 0s, visibility 0s $expand-animation-duration);
 
-	.cd-slider-navigation li, .cd-slider-pagination {
-		opacity: 0;
-		visibility: hidden;
-		@include transition(opacity $expand-animation-duration 0s, visibility 0s $expand-animation-duration);
-
-		.cd-slider-active & {
-			opacity: 1;
-			visibility: visible;
-			@include transition(opacity $expand-animation-duration $expand-animation-duration, visibility 0s $expand-animation-duration);
-		}
-	}
+    .cd-slider-active & {
+      opacity: 1;
+      visibility: visible;
+      @include transition(opacity $expand-animation-duration $expand-animation-duration, visibility 0s $expand-animation-duration);
+    }
+  }
 }
 
 .cd-slider-navigation li {
-	position: absolute;
-	z-index: 2;
-	@include center(y); // see partials > _mixins.scss
+  position: absolute;
+  z-index: 2;
+  @include center(y); // see partials > _mixins.scss
 
-	&:first-of-type {
-		left: 10px;
-	}
+  &:first-of-type {
+    left: 10px;
+  }
 
-	&:last-of-type {
-		right: 10px;
-	}
+  &:last-of-type {
+    right: 10px;
+  }
 
-	a {
-		display: block;
-		width: 48px;
-		height: 48px;
-		background: url('../images/cd-icon-arrow.svg') no-repeat center center;
-		@include transition(opacity .2s 0s, visibility 0s 0s );
+  a {
+    display: block;
+    width: 48px;
+    height: 48px;
+    background: url('../images/cd-icon-arrow.svg') no-repeat center center;
+    @include transition(opacity .2s 0s, visibility 0s 0s );
 
-		/* image replacement */
-		overflow: hidden;
-		text-indent: 100%;
-		white-space: nowrap;
+    /* image replacement */
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
 
-		&.inactive {
-			opacity: 0;
-			visibility: hidden;
-			@include transition(opacity .2s 0s, visibility 0s .2s );
-		}
+    &.inactive {
+      opacity: 0;
+      visibility: hidden;
+      @include transition(opacity .2s 0s, visibility 0s .2s );
+    }
 
-		.no-touch &:hover {
-			opacity: .7;
-		}
-	}
+    .no-touch &:hover {
+      opacity: .7;
+    }
+  }
 
-	&:first-of-type a {
-		@include transform(rotate(180deg));
-	}
+  &:first-of-type a {
+    @include transform(rotate(180deg));
+  }
 
-	@include MQ(L) {
-		&:first-child {
-			left: 30px;
-		}
+  @include MQ(L) {
+    &:first-child {
+      left: 30px;
+    }
 
-		&:last-child {
-			right: 30px;
-		}
-	}
+    &:last-child {
+      right: 30px;
+    }
+  }
 }
 
 .cd-slider-pagination {
-	/* you won't see this element in the html but it will be created using jQuery */
-	position: absolute;
-	z-index: 2;
-	bottom: 30px;
-	@include center(x); // mixins inside partials > _mixins.scss
-	@include clearfix;
-	visibility: hidden;
+  /* you won't see this element in the html but it will be created using jQuery */
+  position: absolute;
+  z-index: 2;
+  bottom: 30px;
+  @include center(x); // mixins inside partials > _mixins.scss
+  @include clearfix;
+  visibility: hidden;
 
-	.touch & {
-		visibility: hidden;
-	}
+  .touch & {
+    visibility: hidden;
+  }
 
-	li {
-		display: inline-block;
-		float: left;
-		margin: 0 5px;
+  li {
+    display: inline-block;
+    float: left;
+    margin: 0 5px;
 
-		&.selected a {
-			background: $color-3;
-		}
-	}
+    &.selected a {
+      background: $color-3;
+    }
+  }
 
-	a {
-		display: block;
-		height: 12px;
-		width: 12px;
-		border-radius: 50%;
-		border: 1px solid $color-3;
-		/* fix a bug in IE9/10 - transparent anchor not clickable */
-		background-color: rgba(#FFF, 0);
+  a {
+    display: block;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    border: 1px solid $color-3;
+    /* fix a bug in IE9/10 - transparent anchor not clickable */
+    background-color: rgba(#FFF, 0);
 
-		/* image replacement */
-		overflow: hidden;
-		text-indent: 100%;
-		white-space: nowrap;
-	}
+    /* image replacement */
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+  }
 }
 
 .cd-slider-wrapper .cd-close {
-	display: none;
-	position: absolute;
-	z-index: 2;
-	top: 30px;
-	right: 30px;
-	width: 48px;
-	height: 48px;
-	background: url('../images/cd-icon-close.svg') no-repeat center center;
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background: url('../images/cd-icon-close.svg') no-repeat center center;
 
-	/* image replacement */
-	overflow: hidden;
-	text-indent: 100%;
-	white-space: nowrap;
-	
-	visibility: hidden;
-	opacity: 0;
-	@include transition(transform .3s 0s, visibility 0s $expand-animation-duration);
+  /* image replacement */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
 
-	.cd-slider-active & {
-		visibility: visible;
-		opacity: 1;
-		@include transition(transform .3s 0s, visibility 0s 0s, opacity $expand-animation-duration $expand-animation-duration);
-	}
+  visibility: hidden;
+  opacity: 0;
+  @include transition(transform .3s 0s, visibility 0s $expand-animation-duration);
 
-	.no-touch .cd-slider-active &:hover {
-		@include transform(scale(1.2));
-	}
+  .cd-slider-active & {
+    visibility: visible;
+    opacity: 1;
+    @include transition(transform .3s 0s, visibility 0s 0s, opacity $expand-animation-duration $expand-animation-duration);
+  }
 
-	@include MQ(L) {
-		display: block;
-	}
-}
+  .no-touch .cd-slider-active &:hover {
+    @include transform(scale(1.2));
+  }
 
-.greenishCover {
-	position:absolute;
-	height:100%;
-	width:100%;
-	overflow:hidden;
-}
-/* HEIGHT 100%*/
-.height.greenishCover div {
-	position:relative;
-	height:100%;
-	width:10100%;
-	left:-5000%;
-	text-align:center;
-
-}
-.height.greenishCover img {
-	display:inline;
-	height:100%;
-	margin-top:0 !important;
-}
-.height.left.greenishCover div {
-	position:absolute;
-	left:0px;
-	text-align:left;
-}
-.height.right.greenishCover div {
-	position:absolute;
-	right:0px;
-	left:auto;
-	text-align:right;
-}
-/* WIDTH 100%*/
-.width.greenishCover div {
-	position:relative;
-	width:100%;
-	top:50%;
-}
-.width.greenishCover img {
-	display:block;
-	width:100%;
-}
-.width.top.greenishCover div {
-	position:absolute;
-	top:0px;
-}
-.width.top.greenishCover img {
-	margin-top:0px !important;
-}
-.width.bottom.greenishCover div {
-	position:absolute;
-	bottom:0px;
-}
-.width.bottom.greenishCover img {
-	margin-top:0px !important;
-	position:absolute;
-	bottom:0px;
+  @include MQ(L) {
+    display: block;
+  }
 }

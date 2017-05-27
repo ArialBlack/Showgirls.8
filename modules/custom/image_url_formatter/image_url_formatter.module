@@ -89,4 +89,6 @@ function template_preprocess_image_url_formatter(&$variables) {
   //kint($ratio);
 
   $variables['ratio'] = $mediaRatio;
+  $variables['dwidth'] = $width;
+  $variables['dheight'] = $height;
 }

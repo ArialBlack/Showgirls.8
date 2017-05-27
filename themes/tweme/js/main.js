@@ -6,19 +6,8 @@ jQuery(document).ready(function($){
         coverImage = '',
         nGall = '';
 
-
-    function wrapPortraits (list, item) {
-        var $list = $(list),
-            $items = $list.find(item),
-            r = 0;
-
-        for( var i = 0; i < $items.length; i+=2) {
-            $items.slice(i, i+2).wrapAll("<div class='portraitsRow'></div>");
-        }
-    }
-
     function setGalImagesHeight() {
-        var wh = $(window).height(),
+        var wh = $(window).height() - 80,
             //ww = $('.mediagallery-wrap').width(),
             $gallery = $('.mediagallery-wrap').not('.cd-slider-active');
 
@@ -47,7 +36,6 @@ jQuery(document).ready(function($){
     }
 
     setGalImagesHeight();
-    wrapPortraits('.field--field-mediagallery', '.field--field-mediagallery-item.portrait');
 
     $('.ajax_modal_load').on('click', function(){
         var siteUrl = document.location.origin,
@@ -85,7 +73,6 @@ jQuery(document).ready(function($){
                             .done(function(data) {
                                 var mUrl = data.field_image[0].url;
                                 coverImage = '<img class="aCover" src="' + mUrl + '" />';
-                                //$('#exampleModalLong .modal-body').append(coverImage);
                             })
                             .fail(function(event) {
                                 console.log(event.status);
@@ -132,7 +119,6 @@ jQuery(document).ready(function($){
             $('#ajaxNodeModal .modal-body').append(nBody);
             $('#ajaxNodeModal .modal-body').append('<div class="mediagallery-wrap cd-single-item"><div class="field-mediagallery cd-slider-wrapper">' + nGall + '</div></div>');
             setGalImagesHeight();
-            wrapPortraits('#ajaxNodeModal .field--field-mediagallery', '.field--field-mediagallery-item.portrait');
             $('#ajaxNodeModal').modal();
         }
     });

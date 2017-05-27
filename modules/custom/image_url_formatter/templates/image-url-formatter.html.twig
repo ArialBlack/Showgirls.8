@@ -17,6 +17,6 @@
   {% if url %}
     {{ url }}
   {% else %}
-    <div style="background-image: url('{{ image }}')" class="bg-image {{ ratio }}"></div>
+    <div style="background-image: url('{{ image }}')" class="bg-image {{ ratio }}" data-orig-width="{{ dwidth }}" data-orig-height="{{ dheight }}"></div>
   {% endif %}
 {% endspaceless %}
