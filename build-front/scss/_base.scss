@@ -43,6 +43,30 @@ p {
     @include make-container-max-widths();
     padding-left: 0;
     padding-right: 0;
+
+    .modal-content {
+      border-radius: 0;
+    }
+  }
+
+  .modal-body {
+    padding: 0;
+
+    img {
+      max-width: 100%;
+    }
+
+    .nbody {
+      padding: 30px;
+
+      @media (min-width: 768px) {
+        padding: 60px;
+      }
+    }
+  }
+
+  .cd-single-item .field--field-mediagallery-item:after {
+    display: none;
   }
 }
 

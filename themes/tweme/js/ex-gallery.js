@@ -1,4 +1,15 @@
 jQuery(document).ready(function($){
+
+    function wrapPortraits (list, item) {
+        var $list = $(list),
+            $items = $list.find(item),
+            r = 0;
+
+        for( var i = 0; i < $items.length; i+=2) {
+            $items.slice(i, i+2).wrapAll("<div class='portraitsRow'></div>");
+        }
+    }
+
     function setGalHeight() {
         var wh = $(window).height(),
             $portraits = $('.mediagallery-wrap.cd-slider-active .field--field-mediagallery-item.portrait');
@@ -34,6 +45,7 @@ jQuery(document).ready(function($){
 
         container.find('.cd-slider').on('click', function(event){
             if( !container.hasClass('cd-slider-active') && $(event.target).is('.field--field-mediagallery-item')) {
+                $('.field--field-mediagallery-item.portrait').unwrap();
                 itemInfoWrapper.removeClass('cd-slider-active');
                 container.addClass('cd-slider-active');
                 setGalHeight();
@@ -47,6 +59,7 @@ jQuery(document).ready(function($){
         container.find('.cd-close').on('click', function(){
             container.removeClass('cd-slider-active');
             clearGalHeight();
+            wrapPortraits('.field--field-mediagallery', '.field--field-mediagallery-item.portrait');
         });
         
         container.find('.cd-next').on('click', function(){

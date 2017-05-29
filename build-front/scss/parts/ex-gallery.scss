@@ -82,19 +82,28 @@ Main Components
 
       @media (min-width: 768px) {
         width: 50%;
-        padding-right: 10px;
       }
+    }
 
-      &:nth-child(odd) {
-        @media (min-width: 768px) {
+    &.landscape,
+    &.square {
+      width: 100%;
+    }
+  }
+
+  .portraitsRow {
+    .field--field-mediagallery-item.portrait {
+      @media (min-width: 768px) {
+        &:nth-child(odd) {
+          padding-right: 10px;
+          padding-left: 0;
+        }
+
+        &:nth-child(even) {
           padding-right: 0;
           padding-left: 10px;
         }
       }
-    }
-
-    &.landscape {
-      width: 100%;
     }
   }
 
