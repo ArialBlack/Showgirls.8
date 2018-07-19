@@ -1,5 +1,3 @@
-@import '../../node_modules/bourbon/app/assets/stylesheets/bourbon'; // http://bourbon.io/
-
 @import 'ex-gallery/variables'; // colors, fonts etc...
 
 @import 'ex-gallery/mixins'; // custom mixins
@@ -13,7 +11,7 @@ Primary style
 -------------------------------- */
 
 *, *::after, *::before {
-	@include box-sizing(border-box);
+	box-sizing: border-box;
 }
 
 /* -------------------------------- 
@@ -70,7 +68,7 @@ Main Components
       background-size: 48px;
       opacity: 0;
       z-index: 4;
-      @include transition(opacity .2s);
+      transition: opacity .2s;
     }
 
     .no-touch &:hover::after {
@@ -121,9 +119,13 @@ Main Components
       z-index: 1;
       height: 100%;
       width: 100%;
-      @include transform(translateX(100%));
-      @include transition(transform .3s);
+      transform: translateX(100%);
+      transition: transform .3s;
       float: none;
+
+      .bg-image {
+        background-size: contain;
+      }
 
       /*&.landscape {
         @media (min-width: 768px) {
@@ -145,11 +147,11 @@ Main Components
       &.selected {
         position: relative;
         z-index: 2;
-        @include transform(translateX(0));
+        transform: translateX(0);
       }
 
       &.move-left {
-        @include transform(translateX(-100%));
+        transform: translateX(-100%);
       }
     }
   }
@@ -158,10 +160,10 @@ Main Components
 .cd-slider-wrapper {
   position: relative;
   z-index: 1;
-  @include transition(width $expand-animation-duration);
+  transition: width $expand-animation-duration;
   /* Force Hardware Acceleration in WebKit */
-  @include transform(translateZ(0));
-  @include backface-visibility(hidden);
+  transform: translateZ(0);
+  backface-visibility: hidden;
   will-change: width;
 }
 
@@ -198,12 +200,12 @@ Main Components
   .cd-slider-navigation li, .cd-slider-pagination {
     opacity: 0;
     visibility: hidden;
-    @include transition(opacity $expand-animation-duration 0s, visibility 0s $expand-animation-duration);
+    transition: opacity $expand-animation-duration 0s, visibility 0s $expand-animation-duration;
 
     .cd-slider-active & {
       opacity: 1;
       visibility: visible;
-      @include transition(opacity $expand-animation-duration $expand-animation-duration, visibility 0s $expand-animation-duration);
+      transition: opacity $expand-animation-duration $expand-animation-duration, visibility 0s $expand-animation-duration;
     }
   }
 }
@@ -226,7 +228,7 @@ Main Components
     width: 48px;
     height: 48px;
     background: url('../images/cd-icon-arrow.svg') no-repeat center center;
-    @include transition(opacity .2s 0s, visibility 0s 0s );
+    transition: opacity .2s 0s, visibility 0s 0s;
 
     /* image replacement */
     overflow: hidden;
@@ -236,7 +238,7 @@ Main Components
     &.inactive {
       opacity: 0;
       visibility: hidden;
-      @include transition(opacity .2s 0s, visibility 0s .2s );
+      transition: opacity .2s 0s, visibility 0s .2s ;
     }
 
     .no-touch &:hover {
@@ -245,7 +247,7 @@ Main Components
   }
 
   &:first-of-type a {
-    @include transform(rotate(180deg));
+    transform: rotate(180deg);
   }
 
   @include MQ(L) {
@@ -315,16 +317,16 @@ Main Components
 
   visibility: hidden;
   opacity: 0;
-  @include transition(transform .3s 0s, visibility 0s $expand-animation-duration);
+  transition: transform .3s 0s, visibility 0s $expand-animation-duration;
 
   .cd-slider-active & {
     visibility: visible;
     opacity: 1;
-    @include transition(transform .3s 0s, visibility 0s 0s, opacity $expand-animation-duration $expand-animation-duration);
+    transition: transform .3s 0s, visibility 0s 0s, opacity $expand-animation-duration $expand-animation-duration;
   }
 
   .no-touch .cd-slider-active &:hover {
-    @include transform(scale(1.2));
+    transform: scale(1.2);
   }
 
   @include MQ(L) {

@@ -6,8 +6,6 @@ module.exports = function(grunt) {
          sass: {                              // Task
             dist: {                            // Target
                 options: {                       // Target options
-                    style: 'expanded',
-                    lineNumbers: true
                 },
                 files: {                         // Dictionary of files
                     '../themes/tweme/css/style.css': 'scss/styles.scss'       // 'destination': 'source
@@ -54,6 +52,7 @@ module.exports = function(grunt) {
         
         postcss: {
             options: {
+              map: true,
               processors: [
                 require('autoprefixer')({browsers: ['last 2 versions', 'ie 10']}),
               ]
