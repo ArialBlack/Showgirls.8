@@ -17,7 +17,7 @@ modules/*
 /.csslintrc
 /.eslintrc.json
 /.gitattributes
-/composer.json
+composer.json
 /example.gitignore
 /index.php
 /autoload.php
@@ -25,7 +25,7 @@ modules/*
 /web.config
 /robots.txt
 /PATCHES.txt
-/composer.lock
+composer.lock
 /LICENSE.txt
 /README.txt
 
@@ -35,4 +35,4 @@ flse/
 themes/tweme/templates/page--foto.html.twig
 themes/tweme/templates/page.html.twig
 temp/
-db.sql
+_db/
